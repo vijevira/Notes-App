@@ -36,50 +36,50 @@ document.addEventListener('DOMContentLoaded', function () {
   // Function to show elements from database
   function getHumanReadableDateDifference(inputDate) {
     if (!inputDate) {
-      return `
+        return `
         <div class="reminderDiv">
             
         </div>`;
     }
-
+    
     const now = new Date();
     const date = new Date(inputDate);
     const options = { hour: 'numeric', minute: 'numeric', hour12: true };
-
+    
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
     const yesterday = new Date(today);
     yesterday.setDate(today.getDate() - 1);
-
+    
     let remind;
     let past = false;
-
+    
     if (date.toDateString() === today.toDateString()) {
-      remind = `Today, ${date.toLocaleTimeString('en-US', options)}`;
+        remind = `Today, ${date.toLocaleTimeString('en-US', options)}`;
     } else if (date.toDateString() === tomorrow.toDateString()) {
-      remind = `Tomorrow, ${date.toLocaleTimeString('en-US', options)}`;
+        remind = `Tomorrow, ${date.toLocaleTimeString('en-US', options)}`;
     } else if (date.toDateString() === yesterday.toDateString()) {
-      remind = `Yesterday, ${date.toLocaleTimeString('en-US', options)}`;
-      past = true;
-    } else {
-      const monthOptions = { month: 'long', day: 'numeric' };
-      remind = `${date.toLocaleDateString('en-US', monthOptions)}, ${date.toLocaleTimeString('en-US', options)}`;
-      if (date < today) {
+        remind = `Yesterday, ${date.toLocaleTimeString('en-US', options)}`;
         past = true;
-      }
+    } else {
+        const monthOptions = { month: 'long', day: 'numeric' };
+        remind = `${date.toLocaleDateString('en-US', monthOptions)}, ${date.toLocaleTimeString('en-US', options)}`;
+        if (date < today) {
+            past = true;
+        }
     }
 
     const reminderClass = past ? 'reminderText past' : 'reminderText ft';
-
+    
     return `
     <div class="reminderDiv">
         <div>
             <p class="${reminderClass}">${remind}</p>
         </div>
     </div>`;
-  }
-
+}
+  
   function showNotes(notes, msg) {
     document.getElementById('note-title-1').innerText = msg || 'Notes';
     const notesElm = document.getElementById("notes");
@@ -113,13 +113,13 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
     const textareas = document.querySelectorAll('.card-text');
-
+    
     textareas.forEach(textarea => {
-      // Adjust height on input event
-      textarea.addEventListener('input', () => autoResize(textarea));
-
-      // Adjust height on page load
-      autoResize(textarea);
+        // Adjust height on input event
+        textarea.addEventListener('input', () => autoResize(textarea));
+        
+        // Adjust height on page load
+        autoResize(textarea);
     });
   }
 
@@ -139,11 +139,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   window.handleEditReminder = async (id, input) => {
-    const reminder = new Date(input);
-    let data = await updateNote(id, { reminder });
-    loadNotes();
+      const reminder = new Date(input);
+      let data = await updateNote(id, {reminder});
+      loadNotes();
   }
-  window.updateBgColor = async (id, background_color) => {
+  window.updateBgColor = async(id, background_color) => {
     const data = await updateNote(id, { background_color });
     loadNotes();
   }
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
     textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
-
+  
 
   let changeToLoginHeader = () => {
     const navbarSupportedList = document.getElementById('navbarSupportedContent');
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-
+  
 
   window.changeToLogoutHeader = () => {
     const username = localStorage.getItem('username');
@@ -266,8 +266,8 @@ document.addEventListener('DOMContentLoaded', function () {
     noteContent.style.backgroundColor = color;
   }
 
-
-
+  
+  
 
   // If user adds a note, add it to the database
   addBtn.addEventListener("click", async function (e) {
