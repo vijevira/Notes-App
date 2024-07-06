@@ -50,7 +50,7 @@ const register = async (req, res) => {
   if (validationError) {
     console.error('Invalid Credential', validationError);
     return res.status(400).json({ error: validationError.message });
-   }
+  }
   const hashedPassword = await bcrypt.hash(password, 10);
   const query = queries.create;
   const values = [username, hashedPassword];
@@ -70,7 +70,7 @@ const login = async (req, res) => {
   if (validationError) {
     console.error('Invalid Credential', validationError);
     return res.status(400).json({ error: 'Invalid Credential' });
-   }
+  }
   const query = queries.get;
   try {
     const result = await pool.query(query, [username]);

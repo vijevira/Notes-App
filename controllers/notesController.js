@@ -28,7 +28,7 @@ exports.getNotes = async (req, res) => {
 exports.updateNote = async (req, res) => {
   const { id } = req.params;
   const { title, content, tags, background_color, archived, trash, reminder } = req.body;
-  
+
   // Collect all the fields to be updated
   const fields = [];
   if (title !== undefined) fields.push(`title = '${title}'`);
@@ -93,11 +93,11 @@ exports.getArchivedNotes = async (req, res) => {
   }
 };
 
-const deleteTrash  = async (userId) => {
+const deleteTrash = async (userId) => {
   const query = queries.deleteTrash;
   try {
     const result = await pool.query(query, [userId]);
-    if(result.length > 0) console.debug(`Trashed data deleted successfuly: ${result}`);
+    if (result.length > 0) console.debug(`Trashed data deleted successfuly: ${result}`);
   } catch (error) {
     console.error(`Error while deleting trashed data older than 30 days: ${error}`);
   }
@@ -127,7 +127,7 @@ exports.getNotesByTag = async (req, res) => {
   }
 };
 
-exports.getNotesByReminder = async(req, res) => {
+exports.getNotesByReminder = async (req, res) => {
   const query = queries.getNotesByReminder;
   const userId = req.user.id;
   const { tag } = req.params;
