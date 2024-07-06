@@ -1,0 +1,191 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fffecb;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.card-body {
+  padding: 20px;
+  background-color: #fffecb;
+  border-left: 5px solid #ffd700;
+}
+
+.card-title, .card-text {
+  width: 100%;
+  border: none;
+  resize: none;
+  padding: 10px;  
+  /* margin-bottom: 10px; */
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.card-title {
+  height: 30px;
+  font-weight: bold;
+  background-color: #fff3cd;
+  padding-top: 6px;
+    text-align: left;
+    display: flex;
+    overflow: hidden;
+}
+
+.card-text {
+  height: 60px;
+  background-color: #fff3cd;
+}
+
+.card-tags {
+  font-style: italic;
+  color: #888;
+  margin-bottom: 10px;
+  border-radius: 25px;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+    border-radius: 3px;
+    margin-right: 4px;
+    color: white;
+    font-family: cursive;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+.cardTitle input {
+  width: 100%;
+  padding: 10px 15px;
+}
+.note {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  width: 31%;
+  height: fit-content;
+}
+.colorSelector input {
+  width: 30%;
+  height: 34px;
+  padding: 10px 15px;
+}
+.btn-outline-success {
+  color: white;
+  border-color: white;
+}
+.cardTitle{
+  margin-bottom: 2em;
+}
+li{
+  margin: 0 5px;
+}
+footer {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.fa-github {
+  font-size: 40px;
+}
+
+footer a {
+  color: black;
+}
+
+footer a:hover {
+  transform: scale(1.5);
+  color: black;
+}
+
+#dev {
+  font-size: 30px;
+  color: black;
+  margin: 10px;
+  text-decoration: none;
+}
+
+#dev:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: black;
+  transform: none;
+}
+
+@media screen and (max-width: 900px) {
+  h2{
+      font-size: 2em;
+  }
+  #dev{
+      font-size: 20px;
+  }
+  .fa-github {
+      font-size: 30px;
+  }
+}
+
+.NotesTitle{
+  font-family: Georgia, serif;
+  font-weight: bold;
+  text-align: center;
+  color: firebrick;
+  background: bottom
+}
+.remindAndColor {
+  display: flex;
+  height: 25px;
+}
+
+.reminderDiv {
+  margin-top: 25px;
+}
+
+.reminderText {
+  border: 1px solid;
+  width: fit-content;
+  padding: 0 10px;
+  border-radius: 14px;
+  font-family: italic;
+}
+
+.reminderText.ft {
+  font-size: 16px;
+  color: black;
+}
+
+.reminderText.past {
+  color: red;
+  font-weight: bold;
+}
+
