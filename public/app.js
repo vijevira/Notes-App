@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const noteRemindDate = document.getElementById('note-remind-date');
   const usernameId = document.getElementById('usernameId');
 
-  // const closeBtn = document.getElementById('closeBtn');
 
 
   async function loadNotes() {
@@ -33,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
       showNotes(notes);
     }
   }
-  // Function to show elements from database
+
   function getHumanReadableDateDifference(inputDate) {
     if (!inputDate) {
       return `
@@ -109,16 +108,13 @@ document.addEventListener('DOMContentLoaded', function () {
         notesElm.appendChild(noteElement);
       });
       if (notes.length === 0) {
-        notesElm.innerHTML = `Nothing to show! Use "Add a Note" section above to add notes.`;
+        notesElm.innerHTML = `Nothing to show Here.`;
       }
     }
     const textareas = document.querySelectorAll('.card-text');
 
     textareas.forEach(textarea => {
-      // Adjust height on input event
       textarea.addEventListener('input', () => autoResize(textarea));
-
-      // Adjust height on page load
       autoResize(textarea);
     });
   }
@@ -205,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
 
     const searchTxt = document.getElementById("searchTxt");
-    // Search functionality
+
     searchTxt.addEventListener("input", function (e) {
       e.preventDefault();
       const inputVal = searchTxt.value.toLowerCase();
@@ -266,10 +262,6 @@ document.addEventListener('DOMContentLoaded', function () {
     noteContent.style.backgroundColor = color;
   }
 
-
-
-
-  // If user adds a note, add it to the database
   addBtn.addEventListener("click", async function (e) {
     e.preventDefault();
     const token = localStorage.getItem('token');
@@ -304,8 +296,6 @@ document.addEventListener('DOMContentLoaded', function () {
     showNotes(data, 'Reminder');
   }
 
-
-  // Function to delete a note
   window.deleteNote = async (id, trash) => {
     const token = localStorage.getItem('token');
     const response = await fetch(`api/notes/${id}`, {
@@ -318,7 +308,6 @@ document.addEventListener('DOMContentLoaded', function () {
     (trash) ? getTrashNote() : loadNotes();
   }
 
-  // Function to archive a note
   window.getArchiveNote = async () => {
     const token = localStorage.getItem('token');
     const response = await fetch('/api/notes/archived', {
@@ -377,8 +366,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token');
   }
 
-
-  // Login/Signup functionality
   signupLink.addEventListener('click', function () {
     authModal.show();
   });
