@@ -454,6 +454,6 @@ document.addEventListener('DOMContentLoaded', function () {
       body: JSON.stringify({ username, password }),
     });
     const data = await response.json();
-    alert(data);
+    alert(data.error || 'username or password incorrect');
   });
 });
