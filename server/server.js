@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const authRoutes = require('../routes/auth');
 const notesRoutes = require('../routes/notes');
 const session = require('express-session');
@@ -18,11 +17,11 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: false,
-    maxAge: 24 * 60 * 60 * 1000  // 1 day
+    maxAge: 60 * 60 * 1000  // 1 hour
   }
 }));
 
-app.use(bodyParser.json());
+app.use(express.json({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', notesRoutes);
 app.use(express.static(path.join(process.cwd(), '/public')));

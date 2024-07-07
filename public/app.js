@@ -235,21 +235,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   window.changeToLogoutHeader = () => {
     const username = localStorage.getItem('username');
-    // navbarSupportedList.innerHTML = `
-    //   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    //     <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
-    //       <li class="nav-item">
-    //         <a class="nav-link active" aria-current="page" href="/">Home</a>
-    //       </li>
-    //       <li class="nav-item">
-    //         <a class="nav-link active" id="signup-link" href="#">Sign Up</a>
-    //       </li>
-    //       <li class="nav-item">
-    //         <a class="nav-link active" id="login-link" href="#">Login</a>
-    //       </li>
-    //     </ul>
-    //   </div>
-    // `;
+    navbarSupportedList.innerHTML = `
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" id="signup-link" href="#">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" id="login-link" href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+    `;
   };
   noteBgColor.value = '#ffffff';
   if (localStorage.getItem('token')) {
