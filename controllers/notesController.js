@@ -36,7 +36,10 @@ exports.updateNote = async (req, res) => {
   if (tags) fields.push(`tags = '{${tags.join(",")}}'`);
   if (background_color) fields.push(`background_color = '${background_color}'`);
   if (archived !== undefined) fields.push(`archived = ${archived}`);
-  if (trash !== undefined) fields.push(`trash = ${trash}`);
+  if (trash !== undefined) {
+    fields.push(`trash = ${trash}`);
+    if (trash) fields.push(`archived = false`);
+  }
   if (reminder) fields.push(`reminder = '${reminder}'`);
 
   if (fields.length === 0) {
