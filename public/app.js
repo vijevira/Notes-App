@@ -99,10 +99,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <input type="color" id="colorPicker" style="width:30px; margin-right:5px; height:25px;cursor: pointer;" value="${note.background_color}" onchange="updateBgColor(${note.id}, this.value)">
                     <input type="datetime-local" id="datetimeInput" style="width:25px;margin-right:5px;cursor: pointer;" value="${dateTime}" onblur="handleEditReminder(${note.id}, this.value)" />
                     <button onclick="archiveNote(${note.id}, ${!note.archived}, ${note.trash})" class="btn btn-secondary" style="background:${note.trash ? 'red' : 'grey'}"> ${note.trash ? 'Delete' : note.archived ? 'Unarchive' : 'Archive'}</button>
-                    <button onclick="trashNote(${note.id}, ${!note.trash})" class="btn btn-primary" style="background:${note.trash ? 'blue' : 'red'}; color:black;"> ${note.trash ? 'Restore' : 'Trash'}</button>
+                    <button onclick="trashNote(${note.id}, ${!note.archived}, ${!note.trash})" class="btn btn-primary" style="background:${note.trash ? 'blue' : 'red'}; color:black;"> ${note.trash ? 'Restore' : 'Trash'}</button>
                 </div>
                 <div>
-                 
                 </div>
               </div>`;
         notesElm.appendChild(noteElement);
@@ -280,8 +279,18 @@ document.addEventListener('DOMContentLoaded', function () {
       body: JSON.stringify({ title, content, tags, background_color, reminder }),
     });
     const data = await response.json();
-    addNoteModel.hide();
-    loadNotes();
+    if (data.error) {
+      alert(data.error);
+    } else {
+      addNoteModel.hide();
+      document.getElementById('note-title').value = '';
+      noteContent.value = '';
+      noteContent.style.backgroundColor = '#ffffff';
+      document.getElementById('note-tags').value = '';
+      noteBgColor.value = '#ffffff';
+      noteRemindDate.value = null;
+      loadNotes();
+    }
   });
 
   window.getNotesForReminder = async () => {
@@ -333,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.archiveNote = async (id, archived, trash) => {
     const token = localStorage.getItem('token');
     if (trash) {
-      window.deleteNote(id, true);
+      return window.deleteNote(id, true);
     }
     const response = await fetch(`/api/notes/${id}`, {
       method: 'PUT',
@@ -347,9 +356,8 @@ document.addEventListener('DOMContentLoaded', function () {
     (!archived) ? getArchiveNote() : loadNotes();
   }
 
-  window.trashNote = async (id, trash) => {
+  window.trashNote = async (id, archived, trash) => {
     const token = localStorage.getItem('token');
-    console.log('trashNote', trash);
     const response = await fetch(`/api/notes/${id}`, {
       method: 'PUT',
       headers: {
@@ -359,7 +367,8 @@ document.addEventListener('DOMContentLoaded', function () {
       body: JSON.stringify({ trash }),
     });
     const data = await response.json();
-    (!trash) ? getTrashNote() : loadNotes();
+    console.log(trash, archived);
+    (!trash) ? getTrashNote() : (!archived) ? getArchiveNote() : loadNotes();
   }
 
   window.editNote = async (id, note) => {
@@ -442,6 +451,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     const data = await response.json();
     if (data.error) alert(data.error || 'username or password incorrect');
-    else alert(data);
+    else {
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+      alert(data);
+    }
   });
 });
