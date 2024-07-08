@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <div class="card-body" >
                 <textarea class="card-title" onblur="handleTitleEditDone(${note.id},this.value)">${note.title}</textarea>
                 <textarea class="card-text" oninput="autoResize(this)" onfocus="autoResize(this)" onblur="handleContentEditDone(${note.id},this.value)" style = "background-color: ${note.background_color}">${note.content}</textarea>
-                <textarea class="card-title card-tags" onblur="handleTagsEditDone(${note.id}, this.value)"> ${note.tags.join(', ')} </textarea>
+                <textarea class="card-title card-tags" onblur="handleTagsEditDone(${note.id}, this.value)" style="display:${note.tags.length?'block':'none'}"> ${note.tags.join(', ')} </textarea>
                 ${humanReadable}
                 <div class="remindAndColor">
                     <input type="color" id="colorPicker" style="width:30px; margin-right:5px; height:25px;cursor: pointer;" value="${note.background_color}" onchange="updateBgColor(${note.id}, this.value)">
