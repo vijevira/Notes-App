@@ -20,6 +20,10 @@ body {
   border-left: 5px solid #ffd700;
 }
 
+.noteCard {
+  min-width: 325px;
+}
+
 .card-title, .card-text {
   width: 100%;
   border: none;
